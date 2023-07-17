@@ -11,11 +11,8 @@ with open("creds.json", "r") as f:
     TOKEN = json.loads(f.read())["token"]
 
 
-def main():
+if __name__ == "__main__":
     app = Application.builder().token(TOKEN).build()
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, EchoCommand))
     app.run_polling(allowed_updates=Update.ALL_TYPES)
-
-
-if __name__ == "__main__":
-    main()
+    
